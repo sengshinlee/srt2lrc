@@ -38,7 +38,6 @@ function main() {
         exit 0
     fi
 
-
     if [ "$(echo ${ARG} | cut -c 1)" != "-" ] || [ "$(echo ${ARG} | cut -c 2)" == "-" ]; then
         echo "srt2lrc.sh: illegal option -- '${ARG}'"
         help
