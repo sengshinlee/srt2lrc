@@ -18,7 +18,6 @@ function srt2lrc() {
     tee ${FILENAME}.lrc >/dev/null 2>&1
 }
 
-
 function help() {
     echo '
 USAGE
