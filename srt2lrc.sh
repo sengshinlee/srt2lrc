@@ -1,7 +1,7 @@
 #!/bin/bash
 
 function srt2lrc() {
-    TIME=$(cat ${FILENAME} | \
+    local TIME=$(cat ${FILENAME} | \
             grep "\-\->" | \
             awk '{print $1}' | \
             awk -F ':' '{print $2":"$3}' | \
@@ -9,10 +9,10 @@ function srt2lrc() {
             sed 's/.$//' | \
             awk '{print "["$0"]"}')
 
-    SUBTITLES=$(cat ${FILENAME} | \
+    local SUBTITLES=$(cat ${FILENAME} | \
                 awk '/\-\->/{getline a;print a}')
 
-    FILENAME=${FILENAME::-4}
+    local FILENAME=${FILENAME::-4}
 
     paste -d " " <(echo "${TIME}") <(echo "${SUBTITLES}") | \
     tee ${FILENAME}.lrc >/dev/null 2>&1
