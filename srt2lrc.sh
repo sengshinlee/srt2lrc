@@ -4,7 +4,7 @@ function srt2lrc() {
     local TIME=$(cat ${FILENAME} | \
             grep "\-\->" | \
             awk '{print $1}' | \
-            awk -F ':' '{print $2":"$3}' | \
+            awk -F ':' '{if ($1 != 0) {print ($1 * 60 + $2)":"$3} else {print $2":"$3}}' | \
             awk -F ',' '{print $1"."$2}' | \
             sed 's/.$//' | \
             awk '{print "["$0"]"}')
